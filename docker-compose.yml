@@ -43,7 +43,7 @@ services:
 
   # 2. Backend API Service
   backend:
-    build: ./backend
+    image: nasirhayat028/devtrack-backend:latest
     container_name: devtrack-backend
     ports:
       - "5000:5000"
@@ -55,7 +55,7 @@ services:
 
   # 3. Frontend Web Server (Nginx) Service
   frontend:
-    build: ./frontend
+    image: nasirhayat028/devtrack-frontend:latest
     container_name: devtrack-frontend
     ports:
       - "80:80"
