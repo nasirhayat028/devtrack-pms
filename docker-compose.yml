@@ -1,0 +1,85 @@
+version: '3.8'
+
+networks:
+  devtrack-network:
+    driver: bridge
+
+services:
+  # 1. MongoDB Database Service
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+
+    volumes:
+      - mongo_data:/data/db
+
+    networks:
+      - devtrack-network
+
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      # Is se ye bataya jata hai ke kis mongodb container se connect hona hai
+      ME_CONFIG_MONGODB_SERVER: mongodb 
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGOEXPRESS_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGOEXPRESS_PASSWORD}
+      # Web interface ke liye login credentials (aap apni marzi ke rakh sakte hain)
+      ME_CONFIG_BASICAUTH_USERNAME: ${BASICAUTH_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${BASICAUTH_PASSWORD}
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    networks:
+      - devtrack-network
+
+
+  # 2. Backend API Service
+  backend:
+    build: ./backend
+    container_name: devtrack-backend
+    ports:
+      - "5000:5000"
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - devtrack-network
+
+  # 3. Frontend Web Server (Nginx) Service
+  frontend:
+    build: ./frontend
+    container_name: devtrack-frontend
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - devtrack-network
+
+  helper-info:
+    image: alpine
+    container_name: devtrack-helper
+    command: >
+      sh -c "echo '--------------------------------------------------' &&
+             echo '🚀 DevTrack Services are starting up!' &&
+             echo '🌐 Frontend Access: http://localhost' &&
+             echo '🛠️ Backend API: http://localhost:5000' &&
+             echo '📊 Database UI: http://localhost:8081' &&
+             echo '--------------------------------------------------'"
+    networks:
+      - devtrack-network
+
+
+volumes:
+  mongo_data:
+
+
