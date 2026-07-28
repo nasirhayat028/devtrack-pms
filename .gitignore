@@ -7,3 +7,6 @@ backend/*.log
 frontend/node_modules/
 frontend/dist/
 frontend/.env
+
+#k8s
+k8s/secret.yaml
