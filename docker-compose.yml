@@ -44,7 +44,7 @@ services:
   # 2. Backend API Service
   backend:
     image: nasirhayat028/devtrack-backend:latest
-    container_name: devtrack-backend
+    container_name: backend
     ports:
       - "5000:5000"
     restart: always
