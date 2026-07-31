@@ -18,6 +18,7 @@ spec:
         app: frontend
 
     spec:
+      serviceAccountName: frontend-sa
       containers:
         - name: frontend
           image: nasirhayat028/devtrack-frontend:latest

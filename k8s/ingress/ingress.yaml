@@ -9,25 +9,43 @@ spec:
   ingressClassName: nginx
 
   rules:
-    - host: devtrack.local
+  - host: devtrackp.local 
+    http:
+      paths:
 
-      http:
-        paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
 
-          - path: /
-            pathType: Prefix
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend
+            port:
+              number: 5000
 
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 80
 
-          - path: /api
-            pathType: Prefix
+  - host: devtrack.local 
+    http:
 
-            backend:
-              service:
-                name: backend
-                port:
-                  number: 5000
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+              
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend
+            port:
+              number: 5000

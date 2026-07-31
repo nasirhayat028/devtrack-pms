@@ -6,7 +6,15 @@ metadata:
   namespace: devtrack
 
 spec:
-  replicas: 1
+  replicas: 3
+
+
+  strategy:
+    type: RollingUpdate
+  
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
 
   selector:
     matchLabels:
@@ -19,6 +27,7 @@ spec:
         component: api
 
     spec:
+      serviceAccountName: backend-sa
       containers:
         - name: backend
 
@@ -36,19 +45,36 @@ spec:
             - secretRef:
                 name: devtrack-secret
 
+          startupProbe:
+            httpGet: 
+              path: /api/health
+              port: 5000
+
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 12
+
           readinessProbe:
             httpGet:
               path: /api/health
               port: 5000
-            initialDelaySeconds: 10
+
+            initialDelaySeconds: 5
             periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+
 
           livenessProbe:
             httpGet:
               path: /api/health
               port: 5000
+
             initialDelaySeconds: 20
             periodSeconds: 15
+            timeoutSeconds: 1
+            failureThreshold: 3
+
 
           resources:
             requests:
