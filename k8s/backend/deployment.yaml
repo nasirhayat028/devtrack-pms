@@ -28,6 +28,33 @@ spec:
 
     spec:
       serviceAccountName: backend-sa
+      priorityClassName: backend-high-priority
+
+      
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                - backend
+
+        podAntiAffinity: # <-- affinity ke theek neeche, 8 spaces par
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm: # <-- iske andar baqi dono fields aayengi
+              topologyKey: kubernetes.io/hostname # <-- 14 spaces par
+              labelSelector: # <-- 14 spaces par
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - backend
+
+
       containers:
         - name: backend
 
