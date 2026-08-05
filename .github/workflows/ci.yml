@@ -48,3 +48,16 @@ jobs:
       
       - name: Check Docker Compose Version
         run: docker compose version
+
+      - name: Build Backend Image
+        working-directory: ./backend
+        run: docker build -t devtrack-backend .
+        
+      - name: Build Frontend Image
+        working-directory: ./frontend
+        run: docker build -t devtrack-frontend .
+        
+      - name: Verify Images
+        run: |
+          docker images | grep devtrack-backend
+          docker images | grep devtrack-frontend
