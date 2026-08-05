@@ -27,3 +27,10 @@ jobs:
 
       - name: List Files
         run: ls -la
+
+      - name: Install Dependencies
+        working-directory: ./backend
+        run: npm install
+        
+      - name: Check Locatrion
+        run: pwd
