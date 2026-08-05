@@ -3,6 +3,9 @@ name: DevTrack CI
 on:
   push:
 
+env:
+  IMAGE_TAG: ${{ github.sha }}  
+
 jobs:
   verify-runner:
     runs-on: ubuntu-latest
@@ -51,11 +54,11 @@ jobs:
 
       - name: Build Backend Image
         working-directory: ./backend
-        run: docker build -t devtrack-backend:${{ github.sha }} .
+        run: docker build -t devtrack-backend:$IMAGE_TAG .
         
       - name: Build Frontend Image
         working-directory: ./frontend
-        run: docker build -t devtrack-frontend:${{ github.sha }} .
+        run: docker build -t devtrack-frontend:$IMAGE_TAG .
       - name: Verify Images
         run: |
           docker images | grep devtrack-backend
