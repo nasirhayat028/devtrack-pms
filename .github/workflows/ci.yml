@@ -74,3 +74,6 @@ jobs:
         run: docker push nasirhayat028/devtrack-backend:$IMAGE_TAG
       - name: Push Frontend Image to Docker Hub
         run: docker push nasirhayat028/devtrack-frontend:$IMAGE_TAG
+
+      - name: Update Kubernetes Manifests
+        run: ./scripts/update-manifests.sh
