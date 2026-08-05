@@ -78,5 +78,8 @@ jobs:
       - name: Push Frontend Image to Docker Hub
         run: docker push nasirhayat028/devtrack-frontend:$IMAGE_TAG
 
+      - name: Print GitHub Actor
+        run: echo "GitHub Actor:${{ github.actor }}"
+
       - name: Update Kubernetes Manifests
         run: ./scripts/update-manifests.sh
