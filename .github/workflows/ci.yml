@@ -54,18 +54,23 @@ jobs:
 
       - name: Build Backend Image
         working-directory: ./backend
-        run: docker build -t devtrack-backend:$IMAGE_TAG .
+        run: docker build -t nasirhayat028/devtrack-backend:$IMAGE_TAG .
         
       - name: Build Frontend Image
         working-directory: ./frontend
-        run: docker build -t devtrack-frontend:$IMAGE_TAG .
+        run: docker build -t nasirhayat028/devtrack-frontend:$IMAGE_TAG .
       - name: Verify Images
         run: |
-          docker images | grep devtrack-backend
-          docker images | grep devtrack-frontend
+          docker images | grep nasirhayat028
+          docker images | grep nasirhayat028
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Push Backend Image to Docker Hub
+        run: docker push nasirhayat028/devtrack-backend:$IMAGE_TAG
+      - name: Push Frontend Image to Docker Hub
+        run: docker push nasirhayat028/devtrack-frontend:$IMAGE_TAG
