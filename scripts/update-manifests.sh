@@ -30,3 +30,21 @@ sed -i "s|image: nasirhayat028/devtrack-frontend:.*|image: nasirhayat028/devtrac
 
 echo "Updated Frontend Image:"
 grep "image:" k8s/frontend/deployment.yaml
+
+echo ""
+echo "========================================"
+echo "Configuring Git..."
+echo "========================================"
+
+git config --global user.name "Nasir Hayat"
+git config --global user.email "nasirhayat.dev@gmail.com"
+
+echo "Git Configuration:"
+git config --global --list
+
+echo ""
+echo "========================================"
+echo "Git Status"
+echo "========================================"
+
+git status
