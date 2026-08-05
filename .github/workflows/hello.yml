@@ -1,0 +1,12 @@
+name: DevTrack First Workflow
+
+on:
+  push:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Print Message
+        run: echo "Hello, DevTrack!"
