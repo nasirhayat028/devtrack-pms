@@ -51,12 +51,11 @@ jobs:
 
       - name: Build Backend Image
         working-directory: ./backend
-        run: docker build -t devtrack-backend .
+        run: docker build -t devtrack-backend:${{ github.sha }} .
         
       - name: Build Frontend Image
         working-directory: ./frontend
-        run: docker build -t devtrack-frontend .
-        
+        run: docker build -t devtrack-frontend:${{ github.sha }} .
       - name: Verify Images
         run: |
           docker images | grep devtrack-backend
