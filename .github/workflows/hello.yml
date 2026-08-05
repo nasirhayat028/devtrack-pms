@@ -1,4 +1,4 @@
-name: DevTrack CI
+name: DevTrack First Workflow
 
 on: 
   push:
