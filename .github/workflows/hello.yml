@@ -1,11 +1,14 @@
-name: DevTrack First Workflow
+name: DevTrack CI
 
-on:
+on: 
   push:
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Say Hello
-        run: echo "Hello World! DevTrack Pipeline is running successfully."
+      - name: Step 1
+        run: echo "Starting DevTrack CI"
+
+      - name: Step 2
+        run: echo "Pipeline Finished"
