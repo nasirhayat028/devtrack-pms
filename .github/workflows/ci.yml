@@ -38,3 +38,7 @@ jobs:
         
       - name: Check Location
         run: pwd
+
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: npm run build
