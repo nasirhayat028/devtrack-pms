@@ -3,14 +3,15 @@ name: DevTrack CI
 on:
   push:
 
-# permissions:
-  # contents: write
+permissions:
+  contents: write
 
 env:
   IMAGE_TAG: ${{ github.sha }}  
 
 jobs:
   verify-runner:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:

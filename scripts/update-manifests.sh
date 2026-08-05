@@ -61,10 +61,20 @@ git add k8s/frontend/deployment.yaml
 echo "Git Status After Staging:"
 git status
 
+
+echo ""
+echo "Checking for staged changes..."
+
+if git diff --cached --quiet; then
+    echo "No changes to commit."
+    exit 0
+fi
+
 echo ""
 echo "========================================"
 echo "Creating Commit..."
 echo "========================================"
+
 
 git commit -m "Update image tags to $IMAGE_TAG"
 
@@ -74,4 +84,4 @@ echo "========================================"
 echo "Pushing Changes..."
 echo "========================================"
 
-# git push
+git push
