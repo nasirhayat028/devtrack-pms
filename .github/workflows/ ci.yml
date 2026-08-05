@@ -28,9 +28,13 @@ jobs:
       - name: List Files
         run: ls -la
 
-      - name: Install Dependencies
+      - name: Install Backend Dependencies
         working-directory: ./backend
-        run: npm install
+        run: npm ci
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm ci
         
-      - name: Check Locatrion
+      - name: Check Location
         run: pwd
