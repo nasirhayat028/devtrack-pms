@@ -317,4 +317,4 @@ This repository is not just a single app; it is a full DevOps-ready stack with:
 - persistent storage for MongoDB
 - security and resource controls via secrets, network policy, probes, and limits
 
-Use this README as the primary architectural guide to understand the services, tools, and deployment approach in the DevTrack project.
+Use this README as the primary architectural guide to understand the services, tools, and deployment approach in the DevTrack project..
