@@ -48,3 +48,30 @@ echo "Git Status"
 echo "========================================"
 
 git status
+
+
+echo ""
+echo "========================================"
+echo "Staging Manifest Files..."
+echo "========================================"
+
+git add k8s/backend/deployment.yaml
+git add k8s/frontend/deployment.yaml
+
+echo "Git Status After Staging:"
+git status
+
+echo ""
+echo "========================================"
+echo "Creating Commit..."
+echo "========================================"
+
+git commit -m "Update image tags to $IMAGE_TAG"
+
+
+echo ""
+echo "========================================"
+echo "Pushing Changes..."
+echo "========================================"
+
+# git push

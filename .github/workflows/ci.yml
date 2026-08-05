@@ -3,6 +3,9 @@ name: DevTrack CI
 on:
   push:
 
+# permissions:
+  # contents: write
+
 env:
   IMAGE_TAG: ${{ github.sha }}  
 
