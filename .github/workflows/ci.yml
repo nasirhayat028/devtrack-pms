@@ -42,3 +42,9 @@ jobs:
       - name: Build Frontend
         working-directory: ./frontend
         run: npm run build
+
+      - name: Check Docker Version
+        run: docker --version
+      
+      - name: Check Docker Compose Version
+        run: docker compose version
