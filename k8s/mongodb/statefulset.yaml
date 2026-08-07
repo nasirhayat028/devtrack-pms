@@ -42,6 +42,14 @@ spec:
                   name: devtrack-secret
                   key: MONGO_PASSWORD
 
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+
           volumeMounts:
             - name: mongodb-storage
               mountPath: /data/db
