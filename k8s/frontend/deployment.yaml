@@ -21,7 +21,7 @@ spec:
       serviceAccountName: frontend-sa
       containers:
         - name: frontend
-          image: nasirhayat028/devtrack-frontend:f3e310de5e47bcc893ceb4a6eb9361143aa7f2b6
+          image: nasirhayat028/devtrack-frontend:435d98576f601083fdfb6c63db54165c5779f4fb
           imagePullPolicy: Always
 
           ports:
