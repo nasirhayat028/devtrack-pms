@@ -14,7 +14,8 @@ kubectl apply -f k8s/namespace.yaml
 kubectl apply -f k8s/limit-range.yaml
 kubectl apply -f k8s/resource-quota.yaml
 
-# Create service accounts, configmap and secret (edit secret values first)
+# Create service akubectl top pods -n devtrack
+ccounts, configmap and secret (edit secret values first)
 kubectl apply -f k8s/secret.yaml
 kubectl apply -f k8s/configmap.yaml
 kubectl apply -f k8s/backend/serviceaccount.yaml
@@ -53,5 +54,3 @@ kubectl get ingress -n devtrack
 Rollback / cleanup
 - To remove the stack: `kubectl delete -f k8s/ -R --ignore-not-found`
 - If you need a clean MongoDB init: delete PVCs and the underlying hostPath data (careful: data loss).
-
-If you want, I can also add a GitHub Actions workflow to `apply` or generate manifest overlays.
