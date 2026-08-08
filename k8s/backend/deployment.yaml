@@ -58,7 +58,7 @@ spec:
       containers:
         - name: backend
 
-          image: nasirhayat028/devtrack-backend:af498435885ac55aa91591969cd851ca5d2b3860
+          image: nasirhayat028/devtrack-backend:4b46db2cb6c2367ba93bee242152bf4389883806
 
           imagePullPolicy: Always
 
